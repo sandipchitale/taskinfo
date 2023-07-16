@@ -1,0 +1,17 @@
+initscript {
+  repositories {
+    gradlePluginPortal()
+  }
+  dependencies {
+    classpath "org.barfuin.gradle.taskinfo:gradle-taskinfo:2.1.0"
+  }
+}
+
+rootProject {
+  apply plugin: org.barfuin.gradle.taskinfo.GradleTaskInfoPlugin
+
+  taskinfo {
+    clipped = true
+    color = false
+  }
+}
