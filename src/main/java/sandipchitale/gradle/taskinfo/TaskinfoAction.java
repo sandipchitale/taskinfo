@@ -46,6 +46,6 @@ public class TaskinfoAction extends AnAction {
         // This is a hack to get the taskinfo task name from the action ID.
         String tiTask = actionEvent.getActionManager().getId(action).replace("sandipchitale.gradle.taskinfo.", "");
         RunAnythingManager.getInstance(Objects.requireNonNull(actionEvent.getProject()))
-                .show(String.format("gradle --console=plain -I %s :%s ", GRADE_TASKINFO_DOT_GRADLE, tiTask), actionEvent);
+                .show(String.format("gradle --console=plain -I %s :%s ", GRADE_TASKINFO_DOT_GRADLE, tiTask), false, actionEvent);
     }
 }
