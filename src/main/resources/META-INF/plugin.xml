@@ -18,6 +18,7 @@ Allows you to run tiOrder, tiTree on any Gradle Task. Uses Run Anything popup to
 
 For example:
 
+<pre>
 > gradle tiOrder build
 ...
 > Task :tiOrder
@@ -66,6 +67,8 @@ In order to execute [:build], the following tasks would be executed in this orde
                +--- :compileTestJava <shown before>
                `--- :processTestResources (org.gradle.language.jvm.tasks.ProcessResources)
 ...
+
+</pre>
 
 NOTE: Uses Gradle plugin `org.barfuin.gradle.taskinfo:gradle-taskinfo:2.1.0` via init script.
   ]]></description>
