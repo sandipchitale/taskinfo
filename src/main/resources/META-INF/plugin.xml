@@ -14,7 +14,60 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Allows you to run tiOrder, tiTree or tiJson (pre Gradle 7.5.2only) on any gradle Task.
+Allows you to run tiOrder, tiTree on any Gradle Task. Uses Run Anything popup to select the task from project context.
+
+For example:
+
+> gradle tiOrder build
+...
+> Task :tiOrder
+
+In order to execute [:build], the following tasks would be executed in this order:
+
+  1. :compileJava          (org.gradle.api.tasks.compile.JavaCompile)
+  2. :processResources     (org.gradle.language.jvm.tasks.ProcessResources)
+  3. :classes              (org.gradle.api.DefaultTask)
+  4. :resolveMainClassName (org.springframework.boot.gradle.plugin.ResolveMainClassName)
+  5. :bootJar              (org.springframework.boot.gradle.tasks.bundling.BootJar)
+  6. :jar                  (org.gradle.api.tasks.bundling.Jar)
+  7. :assemble             (org.gradle.api.DefaultTask)
+  8. :compileTestJava      (org.gradle.api.tasks.compile.JavaCompile)
+  9. :processTestResources (org.gradle.language.jvm.tasks.ProcessResources)
+ 10. :testClasses          (org.gradle.api.DefaultTask)
+ 11. :test                 (org.gradle.api.tasks.testing.Test)
+ 12. :check                (org.gradle.api.DefaultTask)
+ 13. :build                (org.gradle.api.DefaultTask)
+...
+
+> gradle tiTree build
+...
+> Task :tiTree
+:build                                    (org.gradle.api.DefaultTask)
++--- :assemble                            (org.gradle.api.DefaultTask)
+|    +--- :bootJar                        (org.springframework.boot.gradle.tasks.bundling.BootJar)
+|    |    +--- :classes                   (org.gradle.api.DefaultTask)
+|    |    |    +--- :compileJava          (org.gradle.api.tasks.compile.JavaCompile)
+|    |    |    `--- :processResources     (org.gradle.language.jvm.tasks.ProcessResources)
+|    |    +--- :compileJava <shown before>
+|    |    `--- :resolveMainClassName      (org.springframework.boot.gradle.plugin.ResolveMainClassName)
+|    |         +--- :classes <shown before>
+|    |         `--- :compileJava <shown before>
+|    `--- :jar                            (org.gradle.api.tasks.bundling.Jar)
+|         +--- :classes <shown before>
+|         `--- :compileJava <shown before>
+`--- :check                               (org.gradle.api.DefaultTask)
+     `--- :test                           (org.gradle.api.tasks.testing.Test)
+          +--- :classes <shown before>
+          +--- :compileJava <shown before>
+          +--- :compileTestJava           (org.gradle.api.tasks.compile.JavaCompile)
+          |    +--- :classes <shown before>
+          |    `--- :compileJava <shown before>
+          `--- :testClasses               (org.gradle.api.DefaultTask)
+               +--- :compileTestJava <shown before>
+               `--- :processTestResources (org.gradle.language.jvm.tasks.ProcessResources)
+...
+
+NOTE: Uses Gradle plugin `org.barfuin.gradle.taskinfo:gradle-taskinfo:2.1.0` via init script.
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
