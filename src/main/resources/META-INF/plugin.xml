@@ -84,26 +84,20 @@ NOTE: Uses Gradle plugin `org.barfuin.gradle.taskinfo:gradle-taskinfo:2.1.0` via
     </extensions>
     <actions>
         <group id="sandipchitale.gradle.taskinfo.group">
-            <add-to-group group-id="RunMenu" anchor="last"/>
+            <add-to-group group-id="Gradle.View.ActionsToolbar.RightPanel" anchor="last"/>
             <separator/>
             <action id="sandipchitale.gradle.taskinfo.tiOrder"
                     class="sandipchitale.gradle.taskinfo.TaskinfoAction"
-                    text="gradle tiOrder &lt;taskname&gt;"
-                    description="Run gradle tiOrder &lt;taskname&gt;"
+                    text="gradle tiOrder choose-task-name"
+                    description="Run gradle tiOrder choose-task-name"
                     icon="AllIcons.Actions.ListFiles">
             </action>
             <action id="sandipchitale.gradle.taskinfo.tiTree"
                     class="sandipchitale.gradle.taskinfo.TaskinfoAction"
-                    text="gradle tiTree &lt;taskname&gt;"
-                    description="Run gradle tiTree &lt;taskname&gt;"
-                    icon="AllIcons.General.Tree">
+                    text="gradle tiTree choose-task-name"
+                    description="Run gradle tiTree choose-task-name"
+                    icon="AllIcons.Actions.ShowAsTree">
             </action>
-<!--            <action id="sandipchitale.gradle.taskinfo.tiJson"-->
-<!--                    class="sandipchitale.gradle.taskinfo.TaskinfoAction"-->
-<!--                    text="gradle tiJson &lt;taskname&gt;"-->
-<!--                    description="Run gradle tiJson &lt;taskname&gt; (pre Gradle 7.5.2 only)"-->
-<!--                    icon="AllIcons.FileTypes.Json">-->
-<!--            </action>-->
             <separator/>
         </group>
     </actions>
