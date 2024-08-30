@@ -2,6 +2,7 @@ package sandipchitale.gradle.taskinfo;
 
 import com.intellij.ide.actions.runAnything.RunAnythingManager;
 import com.intellij.ide.plugins.PluginManagerCore;
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.extensions.PluginId;
@@ -46,5 +47,10 @@ public class TaskinfoAction extends AnAction {
         String tiTask = actionEvent.getActionManager().getId(action).replace("sandipchitale.gradle.taskinfo.", "");
         RunAnythingManager.getInstance(Objects.requireNonNull(actionEvent.getProject()))
                 .show(String.format("gradle --console=plain -I %s :%s ", GRADE_TASKINFO_DOT_GRADLE, tiTask), false, actionEvent);
+    }
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return super.getActionUpdateThread();
     }
 }
